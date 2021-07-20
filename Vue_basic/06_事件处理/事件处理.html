@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件处理</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+		事件绑定注意事项：
+			1.事件的回调都配置在methods对象中
+			2.methods中的函数，都是被Vue所管理的函数，this的指向是vm 或 组件实例对象
+			3.methods中的配置的函数，不要用箭头函数！！！！，否则this丢失
+	-->
+    <div id="root">
+        <h2>{{name}},滚去学习</h2>
+
+        <!-- 绑定事件--标准方式 -->
+        <button v-on:click="show1">点我打印信息1(v-on绑定)</button><br><br>
+
+        <!-- 绑定事件--简写方式 -->
+        <button @click="show1">点我打印信息1(@绑定)</button><br><br>
+
+        <!-- 绑定事件--传递参数 -->
+        <button @click="show2($event,666)">点我提示：信息2 + 传递的参数</button><br><br>
+
+        <!-- 绑定事件--阻止默认行为, prevent叫事件修饰符 -->
+        <a href="http://www.baidu.com" @click.prevent="show3">点我提示：信息3（组织默认行为）</a><br><br>
+
+        <!-- 绑定事件--阻止冒泡, stop也叫事件修饰符  事件修饰符可以连写,且顺序可以随便改变 -->
+        <div @click="show4">
+            <a href="http://www.baidu.com" @click.stop.prevent="show4">点我提示：信息4（阻止冒泡）</a><br><br>
+        </div>
+
+        <!-- 键盘事件 -->
+        <input @keyup.enter="show5" type="text" placeholder="按下回车提示数据">
+    </div>
+</body>
+
+<script>
+    new Vue({
+        el: '#root',
+        data: { //配置数据
+            name: '周子淇'
+        },
+        methods: { //用于配置方法
+            show1(event) { //不要写箭头函数
+                // console.log("这里面的this也是Vue对象",this);
+                // console.log("信息1",event);
+                console.log("信息1", event.target.innerHTML);
+            },
+            show2(event, number) {
+                console.log(event);
+                alert('信息2--' + number)
+            },
+            show3(event) {
+                // event.preventDefault(); //靠程序员手动阻止默认行为
+                alert('信息3')
+            },
+            show4(event) {
+                // event.stopPropagation(); //手动阻止冒泡
+                alert('信息4')
+            },
+            show5(event) {
+                alert(event.target.value)
+            }
+        },
+    })
+</script>
+
+</html>
