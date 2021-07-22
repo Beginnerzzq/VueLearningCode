@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVVM模型</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!--
+        MVVM的理解：
+        1.M：模型(Model)：对应data中的数据
+        2.V：视图(View)：模板代码
+        3.VM：视图模型(ViewModel)：Vue实例对象
+    -->
+    <div id="root">
+        <h2>Hello,{{msg}}</h2>
+        <h2>地址是：{{address}}</h2>
+    </div>
+</body>
+
+<script>
+    //创建一个Vue实例对象
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            msg: 'zzq',
+            address: 'jufe'
+        }
+    });
+    console.log(vm);
+
+    //观察发现，通过vm能看到data中的属性（注意不是看到data）
+    setTimeout(() => {
+        console.log(vm.msg) //通过vm可以读取data中的数据
+        vm.msg = '周子淇' //通过vm可以修改data中的数据
+    }, 1000);
+</script>
+
+</html>
