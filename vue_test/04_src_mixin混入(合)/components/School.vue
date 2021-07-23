@@ -1,11 +1,13 @@
 <template>
-    <div class="school">
-        <h2>学校名称：{{name}}</h2>
+    <div>
+        <h2 @click="showName">学校名称：{{name}}</h2>
         <h2>学校地址：{{address}}</h2>
     </div>
 </template>
 
 <script>
+    //引入一个混合
+    import {hunhe} from '../mixin'
     export default {
         name:'School',
         data() {
@@ -14,11 +16,8 @@
                 address:'江西'
             }
         },
+        mixins:[
+            hunhe
+        ]
     }
 </script>
-
-<style>
-    .school{
-        background-color: gray;
-    }
-</style>
