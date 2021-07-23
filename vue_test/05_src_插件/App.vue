@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1 class="title">你好</h1>
         <School/>
+        <hr>
         <Student/>
     </div>
 </template>
@@ -15,9 +15,3 @@
         components:{Student,School},
     }
 </script>
-
-<style>
-    .title{
-        color: red;
-    }
-</style>
