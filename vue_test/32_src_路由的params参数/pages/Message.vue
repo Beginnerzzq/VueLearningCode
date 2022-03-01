@@ -3,13 +3,12 @@
         <ul>
             <li v-for="message in messageList" :key="message.id">
                 
-                <!-- 跳转路由并携带query参数，to的字符串写法 -->
-                <!-- <router-link :to="`/home/message/detail?id=${message.id}&title=${message.titile}`">{{message.title}}</router-link>&nbsp;&nbsp; -->
+                <!-- 跳转路由并携带params参数，to的字符串写法 -->
+                <!-- <router-link :to="`/home/message/detail/666/你好啊`">{{message.title}}</router-link>&nbsp;&nbsp; -->
                 
-                <!-- to的对象写法 -->
                 <router-link :to="{
-                    path:'/home/message/detail',
-                    query:{
+                    name:'xiangqing',//如果用params传参，必须使用name不能使用path
+                    params:{
                         id:message.id,
                         title:message.title,
                     }
